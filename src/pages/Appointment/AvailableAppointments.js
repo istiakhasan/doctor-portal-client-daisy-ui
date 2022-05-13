@@ -23,7 +23,10 @@ const AvailableAppointments = ({date}) => {
                         service={service} />)
                 }
             </div>
-            {treatment && <BookingModal treatment={treatment} />}
+            {treatment && <BookingModal
+            date={date}
+            setTreatment={setTreatment}
+            treatment={treatment} />}
         </div>
     );
 };
