@@ -1,8 +1,11 @@
 import { format } from "date-fns";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
 
 const BookingModal = ({ treatment, date,setTreatment }) => {
   const { name, slots } = treatment;
+  const [user, loading, error] = useAuthState(auth);
 
 
 
@@ -14,16 +17,16 @@ const BookingModal = ({ treatment, date,setTreatment }) => {
   }
   return (
     <div>
-      <input type="checkbox" id="booking-modal" class="modal-toggle" />
-      <div class="modal modal-bottom sm:modal-middle">
-        <div class="modal-box">
+      <input type="checkbox" id="booking-modal" className="modal-toggle" />
+      <div className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box">
           <label
-            for="booking-modal"
-            class="btn btn-sm btn-circle absolute right-2 top-2"
+            htmlFor="booking-modal"
+            className="btn btn-sm btn-circle absolute right-2 top-2"
           >
             ✕
           </label>
-          <h3 class="font-bold text-lg text-secondary">Booking for:{name}</h3>
+          <h3 className="font-bold text-lg text-secondary">Booking for:{name}</h3>
           <form 
           onSubmit={handleBooking}
           className="grid grid-cols-1 gap-5 justify-items-center mt-5">
@@ -31,24 +34,26 @@ const BookingModal = ({ treatment, date,setTreatment }) => {
               type="text"
               disabled
               value={format(date, "PP")}
-              class="input input-bordered w-full max-w-xs"
+              className="input input-bordered w-full max-w-xs"
             />
-            <select name="slot" class="select select-bordered w-full max-w-xs">
+            <select name="slot" className="select select-bordered w-full max-w-xs">
              {
-               slots.map(slot=><option value={slot}>{slot}</option>)
+               slots.map((slot,i)=><option key={i} value={slot}>{slot}</option>)
              }
             </select>
             <input
               type="text"
-              placeholder="Your Name"
+              value={user?.displayName}
+              disabled
               name="name"
-              class="input input-bordered w-full max-w-xs"
+              className="input input-bordered w-full max-w-xs"
             />
             <input
               type="email"
-              placeholder="Email Address"
+              disabled
+              value={user?.email}
               name="email"
-              class="input input-bordered w-full max-w-xs"
+              className="input input-bordered w-full max-w-xs"
             />
             <input
               type="text"
@@ -62,8 +67,8 @@ const BookingModal = ({ treatment, date,setTreatment }) => {
               className="btn btn-secondary w-full max-w-xs"
             />
           </form>
-          {/* <div class="modal-action">
-            <label for="booking-modal" class="btn">
+          {/* <div className="modal-action">
+            <label for="booking-modal" className="btn">
               Yay!
             </label>
           </div> */}
