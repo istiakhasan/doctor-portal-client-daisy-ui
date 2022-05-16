@@ -6,7 +6,7 @@ const useAdmin=user=>{
     useEffect(()=>{
       const email=user?.email;
       if(email){
-          fetch(`http://localhost:4000/admin/${email}`,{
+          fetch(`https://doctors-portal-daisy-ui.herokuapp.com/admin/${email}`,{
               headers:{
                   authorization:`Bearar ${localStorage.getItem('accessToken')}`
               }

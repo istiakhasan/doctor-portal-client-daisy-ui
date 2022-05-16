@@ -5,7 +5,7 @@ import UserRow from './UserRow';
 
 const Users = () => {
     const {data:users,isLoading,refetch}=useQuery('users',()=>
-    fetch('http://localhost:4000/user',{
+    fetch('https://doctors-portal-daisy-ui.herokuapp.com/user',{
         headers:{
             'authorization':`Bearer ${localStorage.getItem('accessToken')}`
         }
@@ -19,7 +19,7 @@ const Users = () => {
     return (
         <div>
             <h2 className="text-2xl">All Users:{users.length}</h2>
-            <table class="table w-full">
+            <table className="table w-full">
   
   <thead>
     <tr>

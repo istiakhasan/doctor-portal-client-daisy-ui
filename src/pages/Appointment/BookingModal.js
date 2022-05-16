@@ -24,7 +24,7 @@ const BookingModal = ({ treatment, date,setTreatment,refetch }) => {
 
     }
     console.log(booking)
-    fetch('http://localhost:4000/booking',{
+    fetch('https://doctors-portal-daisy-ui.herokuapp.com/booking',{
       method:"POST",
       headers:{
         "content-type":"application/json"

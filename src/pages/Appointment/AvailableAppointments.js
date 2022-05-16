@@ -11,14 +11,14 @@ const AvailableAppointments = ({date}) => {
     const formatedDate=format(date,'PP')
 
     const {data:services,isLoading,refetch}=useQuery(['available',formatedDate],()=>
-        fetch(`http://localhost:4000/available?date=${formatedDate}`)
+        fetch(`https://doctors-portal-daisy-ui.herokuapp.com/available?date=${formatedDate}`)
         .then(res=>res.json())
     )
     if(isLoading){
         return <Loading />
     }
     // useEffect(()=>{
-    //   fetch(`http://localhost:4000/available?date=${formatedDate}`)
+    //   fetch(`https://doctors-portal-daisy-ui.herokuapp.com/available?date=${formatedDate}`)
     //   .then(res=>res.json())
     //   .then (data=>setServices(data))
     // },[formatedDate])
