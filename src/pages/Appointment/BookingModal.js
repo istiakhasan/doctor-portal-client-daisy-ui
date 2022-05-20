@@ -23,7 +23,7 @@ const BookingModal = ({ treatment, date,setTreatment,refetch }) => {
       phone:e.target.phone.value
 
     }
-    console.log(booking)
+   
     fetch('https://doctors-portal-daisy-ui.herokuapp.com/booking',{
       method:"POST",
       headers:{

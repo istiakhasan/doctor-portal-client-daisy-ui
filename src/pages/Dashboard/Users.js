@@ -1,17 +1,21 @@
+
 import React from 'react';
 import {useQuery} from 'react-query'
+
 import Loading from '../Shared/Loading'
 import UserRow from './UserRow';
 
 const Users = () => {
     const {data:users,isLoading,refetch}=useQuery('users',()=>
     fetch('https://doctors-portal-daisy-ui.herokuapp.com/user',{
+        method:"GET",
         headers:{
             'authorization':`Bearer ${localStorage.getItem('accessToken')}`
         }
     })
-    .then(res=>res.json())
-    )
+    .then(res=> res.json())
+        )
+      
     if(isLoading){
         return <Loading />
     }
@@ -30,7 +34,7 @@ const Users = () => {
   </thead>
   <tbody>
       {
-          users.map((user,i)=>(
+          users?.map((user,i)=>(
               <UserRow refetch={refetch} user={user} key={user._id} i={i} />
           ))
       }

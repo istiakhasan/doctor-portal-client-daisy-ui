@@ -10,7 +10,7 @@ const MyAppointments = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (user) {
-      fetch(`https://doctors-portal-daisy-ui.herokuapp.com/booking?patient=${user?.email}`, {
+      fetch(`http://localhost:4000/booking?patient=${user?.email}`, {
         method: "GET",
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
